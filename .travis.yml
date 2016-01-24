@@ -2,14 +2,17 @@ language: csharp
 sudo: required
 dist: trusty
 env:
-  - MONO_THREADS_PER_CPU=2000
-mono:
-  - 4.0.5
-os:
-  - linux
-  - osx
-env:
+  matrix:
   - DNX_VERSION=1.0.0-rc1-final DNX_USER_HOME=~/.dnx
+  global:
+  - secure: JKESQRgXbNTbU/Im1bmvGw8FqNiYmA5ukVt3YZjJ/+KjFf09MhCTxlf7dYv2VPjRcjJkwTXE9nJm3vaFvG+KSoqZFhlWPckcnJc3r8/3szW9ansj1runM3lt6Iw/QTYLNi4iW+HUGbs8DyKRGFdFmC3rkCXxDIZgDJ92gxpUjmw34xzIB+dfW14J1LBTYdkkXVb1vnIFu2kzljtl6FfbyCSZp70+mKY0GkRNW4Q6hV2sSJ2AWK4FTx3nQN5MW2FadOdBSdlu5knEd1OIhj0L86b80pz4Ve+Z2kX16zC0JhbJU1f8RH/U45X8/G0oWDgUxA+GbZDPb2QbQh6H104bvU6MIWb541vnouMVLkJpt7WCDV+9/hwkyzfDeg39l69/DC1Ch+Gc8kK61/4Z+hJJr3NczcPyN33WfrsoKsB1ZjtjNUlBclEorsprHpujca0HMxSUyl4GsFuOaGkDygM/aS0s6/IowjFqGUZLxTpf+Q5CnvXHpWh819AtWBltNQ1uhqcPDLfe/78ybtoeR1WpvZbxykaKr1OajnIwUGaqsePYW+6/mdJlFoIPEZrryRtv95YgWztYsMIwA8D3+jDaNeR+Zq2afnpDPCdeP+7SfyFBh/AjPDhtAYW3672c80nojzZUi5/3XNMmnz9+XLSSOFXsrpAwp2fW37+6mcZ/t6Y=
+  - secure: E7wEPagxth7ej2W4Cv5ZH3FYhb2yR9/ub7HnoeCrKZgejsGElLUIDdQBkeEcgVJcdwPbBGZjME8zWhiAho9U6c1jhMopzULVWHpy/GHnbvCSFwG3uFaSRTjcgGbLD6ZGeMpuIsrR9TeUtqjGezq33+EGiGZemWA0Hh4irorrZ8oS/cnVGFq3TLgIVpjoEVEHcsWsNgXuiGeIXzLEwiNTSJu9g5aTaKMkqs0Wt9Zay2wuQpitcfpBamjRmsmChmSYJ8PV6IsYnlqZmQ3RVVQKFWUwU+SqDfT9aCtZrI8HIohLrwgd6gMzvbBX+VpRU1mDn9bH9idAP3IBPGFvP45m0qqTIJUjUlFyv1Im4KSnynk+9S+ZEe8t1mtH1KVO9Mdzsog/9mgiy7ybLrqkYS3EWnDBwpwcA/eZo7QGk3DlUksLOHjPOoUX8p5vMq6vU/KzOVWGbhOk0mnZ+imn6GsAu8iFNgl1k8nA6NjTcnGQMxSl0lQel8AEwxXC0zjH5JHd7iVSZBn2dwbkRwa6PliFvoxY8vFOtfGH49TVH605HGa8NU4zs/ufgmiOJRttw2njhJ38iTZSRc1ZZa9xhcn53z34rSvml3ruSDwl2kEoKmYuW2WjbY0f1itHUdr6pfr1XicCsJx54xIGUXJivx8kQ5lNrJqTVvgw3+BkKoiK7YQ=
+  - secure: HzQM5Lchaag8rP0lDhNHcXa0zMNzDjrwyjmCFpVQyQW/T9j2WfH5X0wUryvdXMPPMheE9D3l07cdYJkA4xat85CMHONrp4BET2xE8je+tHNqlNPt/6ApV07b4HI48gG/Es4/tm1pAMWe20M73xmkI8tQL3StnugE9t7Move1v7OEYmTULUJ6We+svxP65ibRpTDN8SBc4V06j3Td7q4drRPc6tpKtF7mel4T2KQHw62fdDQ0Q5v5wAU7Awrb7nLWh64zonVfZdbW1dYjLuFiZ0NRwZLh5cIKxFgZ5FnNpyTdRROOCSUffbWvTCwCzgNF45cuV2n1FUVA6ZL4aWN/wWPg3+78Qxm2J84R6DzCycoIiv/DmI4elKEK3Yohsgpz+yuXpBn30lQBuK5/dA9B4b8rT4yD2AqiqFTB6ilRC3B0osxyxXllCu4/oBResBElgXVJPkdRQFNceFIwPiXskpSGUe1qhhT0e9uziBneDIZ11m5azV6Dq2KZp4UKBKZQG3tcsy1lSFUdY2tRzFacLiq/8eALNrC3cVICoepXj40AjNkZg1j97g8ynRVuaU0fzYhPVIBdLgGuznlXR6TjCN5MRI33tJVrrnjxGvfg8Y5KtzMvx7MqXT21gflTibakKuydpIfFxkmGgc2bGQFvR437aGKXeEKqFQgMH5F9CME=
+mono:
+- 4.0.5
+os:
+- linux
+- osx
 addons:
   apt:
     packages:
@@ -19,15 +22,19 @@ addons:
     - libssl-dev
     - libunwind8
     - zlib1g
-    - jq    
+    - jq
 install:
-  - curl https://azurecludrops.blob.core.windows.net/drops/ubuntu.14.04-x64.latest.tar.gz  | tar xvz && chmod +x ubuntu.14.04-x64/clurun ubuntu.14.04-x64/az
-  - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_USER_HOME=$DNX_USER_HOME DNX_BRANCH=v$DNX_VERSION sh
+- if test "$TRAVIS_OS_NAME" == "osx"; then export BUILDID=osx.10.10-x64; else export BUILDID=ubuntu.14.04-x64; fi
+- curl https://azurecludrops.blob.core.windows.net/drops/$BUILDID.latest.tar.gz  |
+  tar xvz && chmod +x $BUILDID/clurun $BUILDID/az
+- curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_USER_HOME=$DNX_USER_HOME
+  DNX_BRANCH=v$DNX_VERSION sh
+- PATH=$TRAVIS_BUILD_DIR/$BUILDID:$PATH
 script:
-  - source $DNX_USER_HOME/dnvm/dnvm.sh
-  - dnvm install $DNX_VERSION -r coreclr -alias default
-  - dnvm alias default | xargs -i ln -s $DNX_USER_HOME/runtimes/{} $DNX_USER_HOME/runtimes/default
-  - cd src/CLU
-  - dnu restore
-  - cd Commands.Common.ScenarioTest
-  - dnx test
+- source $DNX_USER_HOME/dnvm/dnvm.sh
+- dnvm install $DNX_VERSION -r coreclr -alias default
+- dnvm alias default | xargs -i ln -s $DNX_USER_HOME/runtimes/{} $DNX_USER_HOME/runtimes/default
+- cd src/CLU
+- dnu restore
+- cd Commands.Common.ScenarioTest
+- dnx test
