@@ -9,8 +9,7 @@ os:
   - linux
   - osx
 env:
-  - DNX_VERSION=1.0.0-rc1-final
-  - DNX_USER_HOME=/opt/dnx
+  - DNX_VERSION=1.0.0-rc1-final DNX_USER_HOME=~/.dnx
 addons:
   apt:
     packages:
@@ -25,6 +24,7 @@ install:
   - curl https://azurecludrops.blob.core.windows.net/drops/ubuntu.14.04-x64.latest.tar.gz  | tar xvz && chmod +x ubuntu.14.04-x64/clurun ubuntu.14.04-x64/az
   - curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh | DNX_USER_HOME=$DNX_USER_HOME DNX_BRANCH=v$DNX_VERSION sh
 script:
+  - source $DNX_USER_HOME/dnvm/dnvm.sh
   - dnvm install $DNX_VERSION -r coreclr -alias default
   - dnvm alias default | xargs -i ln -s $DNX_USER_HOME/runtimes/{} $DNX_USER_HOME/runtimes/default
   - cd src/CLU
